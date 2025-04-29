@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Transaction List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            margin: 40px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #ffffff;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid #dddddd;
+            text-align: center;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Transaction List</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Transaction ID</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Amount</th>
+                <th>Transaction Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for txn in transaction %}
+            <tr>
+                <td>{{ txn.transaction_id }}</td>
+                <td>{{ txn.name }}</td>
+                <td>{{ txn.phone }}</td>
+                <td>{{ txn.email }}</td>
+                <td>{{ txn.amount }}</td>
+                <td>{{ txn.transaction_date|date:"Y-m-d" }}</td>
+                <td>{{ txn.get_status_display }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7">No transactions found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>
